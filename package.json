@@ -1,0 +1,73 @@
+{
+  "name": "storage-util-base",
+  "version": "1.0.1",
+  "description": "",
+  "main": "lib/redux.js",
+  "unpkg": "dist/redux.js",
+  "module": "es/redux.js",
+  "types": "types/index.d.ts",
+  "scripts": {
+    "build": "npm run clean && rollup -c",
+    "watch": "rollup -c -w",
+    "clean": "rimraf lib dist es  types",
+    "format": "prettier --write \"src/**/*.{js,ts}\"",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint --ext js,ts src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dsq19920609/localstorage-util.git"
+  },
+  "keywords": [
+    "localStorage"
+  ],
+  "author": "dong.shaoqiang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dsq19920609/localstorage-util/issues"
+  },
+  "homepage": "https://github.com/dsq19920609/localstorage-util#readme",
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/plugin-transform-runtime": "^7.15.0",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-typescript": "^7.15.0",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@rollup/plugin-replace": "^3.0.0",
+    "@rollup/plugin-typescript": "^8.2.5",
+    "@types/node": "^16.9.1",
+    "@typescript-eslint/eslint-plugin": "^4.31.1",
+    "@typescript-eslint/parser": "^4.31.1",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.32.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.25.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "^2.4.0",
+    "rollup": "^2.49.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.3"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.15.4",
+    "@babel/runtime-corejs3": "^7.15.4"
+  },
+  "peerDependencies": {
+    "lodash": "^4.17.21"
+  },
+  "files": [
+    "dist",
+    "lib",
+    "es",
+    "src",
+    "types"
+  ]
+}
