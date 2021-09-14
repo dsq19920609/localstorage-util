@@ -1,2 +1,4 @@
 export { localStorageFactory } from './localstorage';
-export { ILocalStorageFactoryParams, ILocalStorageFactoryReturn } from './types/index';
+export { sessionStorageFactory } from './sessionStorage';
+export { setCookie, getCookies, getCookie, delCookie } from './cookies';
+export { IStorageFactoryParams, IStorageFactoryReturn, StorageType, CookieParams } from './types';

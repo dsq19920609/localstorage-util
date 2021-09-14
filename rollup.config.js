@@ -28,8 +28,7 @@ export default [
     input: './src/index.ts',
     output: {
       format: 'cjs',
-      file: 'lib/storageUtil.js',
-      indent: false
+      file: 'lib/index.js',
     },
     external: makeExternalPredicate([
       ...Object.keys(pkg.dependencies || {}),
@@ -37,7 +36,7 @@ export default [
     ]),
     plugins: [
       nodeResolve({ extensions }),
-      typescript({ useTsconfigDeclarationDir: true }),
+      typescript({ useTsconfigDeclarationDir: true }), // 默认.d.ts声明文件和js文件在一块的，为true时则根据tsconfig.json的declarationDirs输出声明文件
       commonjs(),
       babel({
         extensions,
@@ -48,7 +47,7 @@ export default [
   // es
   {
     input: 'src/index.ts',
-    output: { file: 'es/storageUtil.js', format: 'es', indent: false },
+    output: { file: 'es/index.js', format: 'es' },
     external: makeExternalPredicate([
       ...Object.keys(pkg.dependencies || {}),
       ...Object.keys(pkg.peerDependencies || {})
@@ -65,16 +64,15 @@ export default [
       })
     ]
   },
-
-  // ES for Browsers
+  // ES for Browsers .mjs 通过<script type='module' src=''></script>引入
   {
     input: 'src/index.ts',
-    output: { file: 'es/storageUtil.mjs', format: 'es', indent: false },
+    output: { file: 'es/index.mjs', format: 'es', indent: false },
     plugins: [
       nodeResolve({
         extensions
       }),
-      replace({
+      replace({ //  替换一下浏览器中不存在的变量
         'process.env.NODE_ENV': JSON.stringify('production')
       }),
       typescript({ tsconfigOverride: noDeclarationFiles }),
@@ -99,7 +97,7 @@ export default [
   {
     input: 'src/index.ts',
     output: {
-      file: 'dist/storageUtil.js',
+      file: 'dist/index.js',
       format: 'umd',
       name: 'storageUtil',
       indent: false
@@ -125,7 +123,7 @@ export default [
   {
     input: 'src/index.ts',
     output: {
-      file: 'dist/storageUtil.min.js',
+      file: 'dist/index.min.js',
       format: 'umd',
       name: 'storageUtil',
       indent: false
@@ -144,7 +142,7 @@ export default [
       replace({
         'process.env.NODE_ENV': JSON.stringify('production')
       }),
-      terser({
+      terser({  // 生产环境要压缩
         compress: {
           pure_getters: true,
           unsafe: true,
